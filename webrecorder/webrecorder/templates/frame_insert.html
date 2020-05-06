@@ -114,16 +114,16 @@
 {% endblock %}
 
 {% block body %}
-{% is_embed = true %}
+
 {% if not is_embed %}
-{% include 'header.html' %}
+#{% include 'header.html' %}
 {% endif %}
 
 <iframe id="replay_iframe" onload="iframeLoadEvent()" seamless="seamless" frameborder="0" scrolling="yes" class="wb_iframe"></iframe>
 
 {% if not is_embed %}
-{% include 'links.html' %}
-{% include 'reporterror.html' %}
+#{% include 'links.html' %}
+#{% include 'reporterror.html' %}
 {% else %}
 
 {% if not is_display %}
