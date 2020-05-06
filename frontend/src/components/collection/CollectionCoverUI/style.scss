@@ -1,0 +1,168 @@
+@import 'src/vars';
+
+.coll-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+
+    .visibility-warning {
+        background: $listsYellow;
+        padding: 2rem 10%;
+        text-align: center;
+        width: 100%;
+        font-size: 1.6rem;
+    }
+
+    & > .capstone {
+        align-self: flex-start;
+        margin: 1.5rem 0 1.5rem 1.5rem;
+    }
+
+    .react-tabs {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        width: 100%;
+
+        .react-tabs__tab-list {
+            margin: 0 2rem 1rem 2rem;
+        }
+
+        .react-tabs__tab {
+            border-color: $mgmt-gray;
+            border-radius: .5rem .5rem 0 0;
+            margin-left: 1rem;
+
+            .private-index {
+                font-style: italic;
+                color: $body-gray;
+                opacity: .5;
+            }
+
+            &.react-tabs__tab--selected {
+                opacity: 1;
+            }
+        }
+
+        .overview-tab.react-tabs__tab-panel--selected {
+            flex-grow: 1;
+            display: flex;
+            margin-left: 2rem;
+
+            .scrollspy {
+                list-style-type: none;
+                padding: 0 .5rem 0 0;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                overflow: auto;
+                width: 100%;
+
+                li {
+                    position: relative;
+                    padding-left: .75rem;
+                    cursor: pointer;
+
+                    &:before {
+                        transition: background-color $quickShift ease-in-out;
+                        position: absolute;
+                        left: 0;
+                        content: '';
+                        width: .75rem;
+                        height: 100%;
+                    }
+
+                    &.selected {
+                        &:before {
+                            background-color: $blue;
+                        }
+                    }
+
+                    h3 {
+                        font-weight: 400;
+                        margin-left: 1.5rem;
+                        font-size: 1.9rem;
+                        word-break: break-word;
+
+                        display: flex;
+
+                        svg {
+                            margin-right: 1rem;
+                            flex-shrink: 0;
+                        }
+                    }
+                }
+            }
+
+            .scroll-wrapper {
+                position: relative;
+
+                &.scrollspy-scrollable {
+                    width: 20vw;
+                }
+
+                &.lists-scrollable {
+                    width: calc(100% - 2.5rem);
+                    margin-left: 2.5rem;
+                }
+            }
+
+            .lists-container {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                padding-right: 20%;
+                overflow: auto;
+
+                .capstone {
+                    margin: 2rem 0 0 0;
+                    justify-content: flex-start;
+                }
+
+                h1 {
+                    margin: 1rem 0;
+                    max-width: 75vw;
+                    font-size: 2.6rem;
+                }
+
+                .coll-description {
+                    font-size: 1.6rem;
+                    line-height: 1.5;
+                    margin-bottom: 3rem;
+                }
+
+                .lists-header {
+                    width: 80%;
+                    margin: 5rem auto 4rem auto;
+                    text-align: center;
+                    font-weight: 600;
+                    color: $gray600;
+                }
+
+                ul.lists {
+                    list-style-type: none;
+                    padding: 0;
+
+                    & > li {
+                        margin-bottom: 5rem;
+                    }
+                }
+            }
+        }
+
+        .browse-all-tab.react-tabs__tab-panel--selected {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+
+            .private-index {
+                font-style: italic;
+                color: $body-gray;
+                opacity: .5;
+                margin-left: 1.5rem;
+            }
+        }
+    }
+}

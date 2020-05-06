@@ -1,0 +1,85 @@
+@import 'src/vars';
+
+
+.page-list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    user-select: none;
+
+    .pages {
+        position: relative;
+        flex-grow: 1;
+
+        // sidebar handle buffer
+        margin: 0 .4rem 1rem 0;
+
+        .row-index-container {
+            align-self: flex-start;
+            margin-top: .5rem;
+
+            .row-index {
+                font-size: 1rem;
+                color: #B2B2B2;
+            }
+        }
+    }
+
+    .ReactVirtualized__Table__row {
+        transition: background $tableRowFade ease-in-out,
+                    color $tableRowFade ease-in-out;
+        color: $bookmarkListDefault;
+        cursor: pointer;
+        padding-left: .75rem;
+        position: relative;
+
+        &:before {
+            transition: background-color $quickShift ease-in-out;
+            position: absolute;
+            left: 0;
+            content: '';
+            width: .75rem;
+            height: 100%;
+        }
+
+        &.odd {
+            background-color: $table-zebra;
+        }
+
+        &:focus {
+            outline-width: 0;
+        }
+
+        .page-title {
+            h2 {
+                font-size: 1.5rem;
+                font-weight: 400;
+                margin: 0;
+                line-height: 1.3rem;
+            }
+
+            span {
+                font-size: 1rem;
+            }
+        }
+
+        &.selected {
+            background-color: $blue;
+            color: #FFF;
+        }
+
+        &:hover {
+            &:not(.selected){
+                &:before {
+                    background: $tr-selected;
+                }
+            }
+
+            &.selected {
+                &:before {
+                    background: $tr-highlight-selected;
+                }
+            }
+        }
+    }
+}

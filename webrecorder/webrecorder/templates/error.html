@@ -1,0 +1,53 @@
+{% extends "main_bootstrap.html" %}
+
+{% block head %}
+{{ super() }}
+<base target="_parent">
+<script>
+
+    $(function() {
+        if (window.top != window) {
+            $("nav").hide();
+        }
+    });
+
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container col-md-8 col-md-offset-2 top-buffer-lg">
+    <div class="panel panel-danger">
+{% if is_temp %}
+      <div class="panel-heading">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <strong class="left-buffer">Temporary Collection Not Found</strong>
+      </div>
+      <div class="panel-body">
+        <p>Sorry, this link is to a temporary collection, which is no longer available.</p>
+        {% if curr_user %}
+        <p>Create a permanent collection in <a href="/{{ curr_user }}">your account.</a></p>
+        {% else %}
+        <p><a href="/_register" target="_parent" ><strong>Sign Up</strong></a> or <a href="/_login_modal" class="login-link">Login</a> to give your collection a shareable permanent address on <a href="/">{{ get_app_host()|default('webrecorder.io', true) }}</a></p>
+        {% endif %}
+      </div>
+{% else %}
+      <div class="panel-heading">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <strong class="left-buffer">{{ "Rate Limit Exceeded" if err.body == "rate_limit_exceeded" else "There's been an error"}}</strong>
+      </div>
+      <div class="panel-body">
+        {% if err.status_code == 404 %}
+        No such page or content is not accessible.
+        {% elif err.status_code == 402 and err.body == 'rate_limit_exceeded' %}
+        <p>You have reached your network traffic quota.</p>
+        <p>Webrecorder is a service for <a href="{{ get_app_host() }}/_faq">archiving web resources</a> and any other use, such as video streaming or trying to get around local access restrictions, is not supported.</p>
+        <p>If you are using Webrecorder within our <a href="{{ get_app_host() }}/_policies">terms and policies</a> and this limit is hindering a web archiving project you are working on, please send a message to <a href="mailto:support@webrecorder.io">support@webrecorder.io</a> with some details about your project and a request to raise your data limit.</p>
+        {% else %}
+        {{ err.body }}
+        {% endif %}
+      </div>
+{% endif %}
+
+    </div>
+</div>
+{% endblock %}
