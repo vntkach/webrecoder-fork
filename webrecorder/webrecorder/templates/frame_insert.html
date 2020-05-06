@@ -22,18 +22,20 @@
             overflow: hidden;
         }
 
-       .wb_iframe
-        {
-            width: 100%;
-            height: 100%;
-            padding: 0px 0px 0px 0px;
-            overflow: scroll !important;
-            position: fixed;
-            border: none;
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-        }
+        .wb_iframe
+         {
+             width: 100%;
+             height: 100%;
+             padding: 0px 0px 0px 0px;
+             overflow: scroll !important;
+             position: fixed;
+             border: none;
+             box-sizing: border-box;
+             -moz-box-sizing: border-box;
+             -webkit-box-sizing: border-box;
+            top: 0 !important;
+            padding-bottom: 0 !important;
+         }
 
         {% if is_embed %}
         .embed-footer {
@@ -112,7 +114,7 @@
 {% endblock %}
 
 {% block body %}
-
+{% is_embed = true %}
 {% if not is_embed %}
 {% include 'header.html' %}
 {% endif %}
